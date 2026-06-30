@@ -1,0 +1,133 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Student
+{
+public:
+    int rollNo;
+    string name;
+    float marks;
+
+    void getData()
+    {
+        cout << "\nEnter Roll Number: ";
+        cin >> rollNo;
+        cin.ignore();
+
+        cout << "Enter Name: ";
+        getline(cin, name);
+
+        cout << "Enter Marks: ";
+        cin >> marks;
+    }
+
+    void displayData()
+    {
+        cout << "\nRoll Number : " << rollNo;
+        cout << "\nName        : " << name;
+        cout << "\nMarks       : " << marks << endl;
+    }
+};
+
+int main()
+{
+    vector<Student> students;
+    int choice, roll;
+    bool found;
+
+    do
+    {
+        cout << "\n===== STUDENT MANAGEMENT SYSTEM =====";
+        cout << "\n1. Add Student";
+        cout << "\n2. Display All Students";
+        cout << "\n3. Search Student";
+        cout << "\n4. Delete Student";
+        cout << "\n5. Exit";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+
+        switch(choice)
+        {
+            case 1:
+            {
+                Student s;
+                s.getData();
+                students.push_back(s);
+                cout << "\nStudent Added Successfully!\n";
+                break;
+            }
+
+            case 2:
+            {
+                if(students.empty())
+                {
+                    cout << "\nNo Records Found!\n";
+                }
+                else
+                {
+                    for(int i = 0; i < students.size(); i++)
+                    {
+                        students[i].displayData();
+                    }
+                }
+                break;
+            }
+
+            case 3:
+            {
+                cout << "\nEnter Roll Number to Search: ";
+                cin >> roll;
+                found = false;
+
+                for(int i = 0; i < students.size(); i++)
+                {
+                    if(students[i].rollNo == roll)
+                    {
+                        students[i].displayData();
+                        found = true;
+                        break;
+                    }
+                }
+
+                if(!found)
+                    cout << "\nStudent Not Found!\n";
+
+                break;
+            }
+
+            case 4:
+            {
+                cout << "\nEnter Roll Number to Delete: ";
+                cin >> roll;
+                found = false;
+
+                for(int i = 0; i < students.size(); i++)
+                {
+                    if(students[i].rollNo == roll)
+                    {
+                        students.erase(students.begin() + i);
+                        cout << "\nStudent Deleted Successfully!\n";
+                        found = true;
+                        break;
+                    }
+                }
+
+                if(!found)
+                    cout << "\nStudent Not Found!\n";
+
+                break;
+            }
+
+            case 5:
+                cout << "\nThank You!\n";
+                break;
+
+            default:
+                cout << "\nInvalid Choice!\n";
+        }
+
+    } while(choice != 5);
+
+    return 0;
+}
