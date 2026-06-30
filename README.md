@@ -1,6 +1,7 @@
 # STUDENT-MANAGEMENT-SYSTEM
 
-** Overview**
+** Overview
+**
 The Student Management System is a simple console-based application developed in C++. It helps manage student records efficiently using Object-Oriented Programming (OOP) concepts. The project provides a menu-driven interface for performing basic operations on student data.
 
  **Features**
